@@ -35,6 +35,13 @@ public class LojaController {
       return ResponseEntity.ok(lojas);
    }
 
+   @GetMapping("/{id}")
+   public ResponseEntity<LojaResponse> encontrarPorId(@PathVariable Long id) {
+      LojaModel loja = lojaService.buscarPorId(id);
+      return ResponseEntity.ok(LojaMapper.toLojaResponse(loja));
+
+   }
+
    @DeleteMapping("/{id}")
    public ResponseEntity<Void> deletarLoja(@PathVariable Long id) {
       lojaService.deletarLoja(id);
